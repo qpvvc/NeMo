@@ -11,11 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 import sys
-sys.path.insert(0,'/workspace/workspace/NeMo')  # 将'/workspace/workspace/NeMo'添加到Python模块搜索路径中
-sys.path.insert(0,'/workspace/workspace/Megatron-LM')
-sys.path.remove('/opt/megatron-lm')
+nemo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
+megatron_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../../Megatron-LM'))
+if nemo_path not in sys.path:
+    sys.path.insert(0,nemo_path)
+if megatron_path not in sys.path:
+    sys.path.insert(0,megatron_path)
+    if '/opt/megatron-lm' in sys.path:
+        sys.path.remove('/opt/megatron-lm')
+# print(sys.path)
 
 import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
