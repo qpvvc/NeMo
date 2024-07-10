@@ -44,7 +44,7 @@ model:
   train_ds:
     data_file: /workspace/datasets/wikicorpus_en/training # path to hdf5 file (or directory)
     max_predictions_per_seq: 80
-    batch_size: 8
+    batch_size: 1
     shuffle: true
     num_samples: -1
     num_workers: 8
