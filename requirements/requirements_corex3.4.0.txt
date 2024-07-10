@@ -1,0 +1,11 @@
+huggingface_hub>=0.20.3
+numpy>=1.22,<1.24
+transformers==4.33.2
+pandas==2.0.3
+pyarrow==12.0.1
+# protobuf==4.24.3
+protobuf==3.20.3
+safetensors>=0.3.2,<0.4.0
+tokenizers>=0.13.3,<0.14.0
+typer>=0.6.1,<0.7.0
+wrapt==1.11.0
