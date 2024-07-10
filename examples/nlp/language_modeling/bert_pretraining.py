@@ -15,12 +15,15 @@ import os
 import sys
 nemo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
 megatron_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../../Megatron-LM'))
+transformer_engine_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../../TransformerEngine'))
 if nemo_path not in sys.path:
     sys.path.insert(0,nemo_path)
 if megatron_path not in sys.path:
     sys.path.insert(0,megatron_path)
     if '/opt/megatron-lm' in sys.path:
         sys.path.remove('/opt/megatron-lm')
+if transformer_engine_path not in sys.path:
+    sys.path.insert(0,transformer_engine_path)        
 # print(sys.path)
 
 import pytorch_lightning as pl
