@@ -92,7 +92,7 @@ def get_lm_model(
                 f'{cfg.language_model.pretrained_model_name} is not in get_pretrained_lm_models_list(include_external=False), '
                 f'will be using AutoModel from HuggingFace.'
             )
-
+    # print(f'config_dict:{config_dict},config_file:{config_file}')
     # warning when user passes both configuration dict and file
     if config_dict and config_file:
         logging.warning(
@@ -129,6 +129,8 @@ def get_lm_model(
         model.model.language_model.pooler = Identity()
 
     else:
+        # print(config_dict)
+        # os._exit()
         model = get_huggingface_lm_model(
             config_dict=config_dict,
             config_file=config_file,

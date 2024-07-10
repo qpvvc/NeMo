@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
+sys.path.insert(0,'/workspace/workspace/NeMo')  # 将'/workspace/workspace/NeMo'添加到Python模块搜索路径中
+sys.path.insert(0,'/workspace/workspace/Megatron-LM')
+sys.path.remove('/opt/megatron-lm')
 
 import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
@@ -23,7 +27,7 @@ from nemo.utils import logging
 from nemo.utils.exp_manager import exp_manager
 
 
-@hydra_runner(config_path="conf", config_name="bert_pretraining_from_text_config")
+@hydra_runner(config_path="conf", config_name="bert_pretraining_from_preprocessed_config")
 def main(cfg: DictConfig) -> None:
     logging.info(f'Config:\n {OmegaConf.to_yaml(cfg)}')
     trainer = pl.Trainer(strategy=DDPStrategy(find_unused_parameters=True), **cfg.trainer)

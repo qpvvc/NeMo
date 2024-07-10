@@ -109,13 +109,14 @@ def get_huggingface_lm_model(
         BertModule
     """
 
-    try:
-        automodel = AutoModel.from_pretrained(pretrained_model_name)
-    except Exception as e:
-        raise ValueError(f"{pretrained_model_name} is not supported by HuggingFace. {e}")
+    # try:
+    #     automodel = AutoModel.from_pretrained(pretrained_model_name)
+    # except Exception as e:
+    #     raise ValueError(f"{pretrained_model_name} is not supported by HuggingFace. {e}")
 
-    model_type = type(automodel).__name__
-
+    # model_type = type(automodel).__name__
+    model_type = 'BertModel'
+    # print(f" get hugging ---- config_file:{config_file},config_dict:{config_dict}")
     if model_type in HUGGINGFACE_MODELS:
         model_class = HUGGINGFACE_MODELS[model_type]["class"]
         if config_file:

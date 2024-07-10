@@ -58,7 +58,7 @@ class BERTLMModel(ModelPT):
         vocab_file = None
         config_dict = None
         config_file = None
-
+        # print(f"1------------config:{cfg},cfg.language_model.config:{cfg.language_model.config}")
         if cfg.tokenizer is not None:
             if cfg.tokenizer.get('tokenizer_name') and cfg.tokenizer.get('tokenizer_model'):
                 self._setup_tokenizer(cfg.tokenizer)
@@ -68,10 +68,10 @@ class BERTLMModel(ModelPT):
             self.tokenizer = None
 
         super().__init__(cfg=cfg, trainer=trainer)
-
-        if cfg.get('language_model.config'):
+        # print(f"2-------config:{cfg.get('language_model.config')},config_file:{cfg.language_model.config_file}")
+        if cfg.language_model.config:
             config_dict = OmegaConf.to_container(cfg.language_model.config)
-        if cfg.get('language_model.config_file'):
+        if cfg.language_model.config_file:
             config_file = self.register_artifact('language_model.config_file', cfg.language_model.config_file)
 
         self.bert_model = get_lm_model(
