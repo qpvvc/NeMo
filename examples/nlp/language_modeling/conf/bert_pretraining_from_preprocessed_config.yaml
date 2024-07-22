@@ -1,13 +1,13 @@
 # BERT Pretraining from Preprocessed (tokenized) data
 name: &name PretrainingBERTFromPreprocessed
 trainer:
-  devices: 1 # the number of gpus, 0 for CPU, or list with gpu indices
+  devices: [7] # the number of gpus, 0 for CPU, or list with gpu indices
   num_nodes: 1
   max_steps: 10000 # precedence over max_epochs
   num_sanity_val_steps: 0 # needed for bert pretraining from preproc
   use_distributed_sampler: false # needed for bert pretraining from preproc
   accumulate_grad_batches: 1 # accumulates grads every k batches
-  precision: 16-mixed # 16 to use AMP
+  precision: 16 # 16 to use AMP
   accelerator: gpu
   gradient_clip_val: 1.0
   log_every_n_steps: 1
@@ -44,7 +44,7 @@ model:
   train_ds:
     data_file: /workspace/datasets/wikicorpus_en/training # path to hdf5 file (or directory)
     max_predictions_per_seq: 80
-    batch_size: 1
+    batch_size: 10
     shuffle: true
     num_samples: -1
     num_workers: 8
@@ -67,7 +67,8 @@ model:
 exp_manager:
   exp_dir: nemo_experiments # where to store logs and checkpoints
   name: *name # name of experiment
-  create_tensorboard_logger: False
+  create_tensorboard_logger: True
+  summary_writer_kwargs:
   create_checkpoint_callback: False
 
 

@@ -2,7 +2,7 @@ name: megatron_bert
 restore_from_path: null # used when starting from a .nemo file
 
 trainer:
-  devices: 1
+  devices: [0,1]
   num_nodes: 1
   accelerator: gpu
   precision: bf16
@@ -21,7 +21,7 @@ trainer:
 
 exp_manager:
   explicit_log_dir: null
-  exp_dir: null
+  exp_dir: nemo_experiments
   name: megatron_bert
   create_wandb_logger: False
   wandb_logger_kwargs:
@@ -133,7 +133,7 @@ model:
     #   - /raid/data/pile/my-gpt3_00_text_document
     #   - .5
     #   - /raid/data/pile/my-gpt3_01_text_document
-    data_prefix: [1.0, /path/to/data]
+    data_prefix: [1.0, /workspace/datasets/wikicorpus_en/training/wiki]
     index_mapping_dir: null # path to save index mapping .npy files, by default will save in the same location as data_prefix
     data_impl: mmap
     splits_string: 900,50,50
