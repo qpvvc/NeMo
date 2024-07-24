@@ -7,6 +7,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 NEMO_PATH=$(realpath "$SCRIPT_DIR/../../../")
 MEGATRON_PATH=$(realpath "$SCRIPT_DIR/../../../../Megatron-LM")
 
+echo $NEMO_PATH
+echo $MEGATRON_PATH
 # 更新PYTHONPATH环境变量
 export PYTHONPATH="$NEMO_PATH:$MEGATRON_PATH:$PYTHONPATH"
 
